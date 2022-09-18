@@ -1,0 +1,27 @@
+<div>
+    <form class="example-form" (ngSubmit)="userLogin()">
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" value="" [(ngModel)]="name" name="name">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" value="" [(ngModel)]="password" name="password">
+            </mat-form-field>
+        </div>
+        <div style="margin-bottom: 10%;">
+            <span class="login-button" style="margin-left: 35%">
+                <button type="submit" color="primary" id="login-btn">Login</button>
+            </span>
+        </div>
+    </form>
+    
+</div>
+<div style="margin-top: 30%;">
+    <h3> Haven't registered yet? <span class="sign-up-button">
+            <button type="submit" color="primary" id="sign-up-btn" routerLink="/sign-up">Sign up</button>
+        </span></h3>
+</div>
