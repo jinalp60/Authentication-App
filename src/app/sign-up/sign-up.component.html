@@ -1,0 +1,42 @@
+<form class="example-form" (ngSubmit)="userSignUp()">
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" value="" [(ngModel)]="name" name="name">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="phone" value="" [(ngModel)]="phone" name="phone">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" value="" [(ngModel)]="email" name="email">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" value="" [(ngModel)]="password" name="password">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Bio</mat-label>
+            <input matInput placeholder="Bio" value="" [(ngModel)]="bio" name="bio">
+        </mat-form-field>
+    </div>
+    <div>
+        <span class="sign-up-button" style="margin-left: 30%">
+            <button type="submit" color="primary" id="sign-up-btn">Sign up</button>
+        </span>
+    </div>
+</form>
+<div>
+    <h3> Already have an account? <span class="sign-in-button">
+            <button type="submit" color="primary" id="sign-in-btn" routerLink="/sign-in">Sign in</button>
+        </span></h3>
+</div> 
