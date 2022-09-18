@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +15,16 @@ export class SignInComponent implements OnInit {
   password: string = '';
 
   ngOnInit(): void {
-  
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      if (this.socialUser) {
+        console.log("user:", this.socialUser);
+        sessionStorage.setItem('loggedInUserName',this.socialUser.name);
+        this.router.navigate(['home', this.socialUser.name]);
+      } else {
+        console.log("user not logged in yet !!");
+      }
+    });
   }
 
   userLogin() {
