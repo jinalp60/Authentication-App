@@ -10,6 +10,10 @@ import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@
 })
 export class HomeComponent implements OnInit {
   name: any = '';
+  error: string = '';
+  phone: string = '';
+  email: string = '';
+  bio: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService) { }
 

@@ -12,14 +12,16 @@ import { SocialAuthServiceConfig, SocialLoginModule, GoogleLoginProvider, Facebo
 import { LoginService } from '../app/login.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardGuard } from '../app/auth-guard.guard';
-
+import {MatCardModule} from '@angular/material/card';
+import { UpdateDetailsComponent } from './update-details/update-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { AuthGuardGuard } from '../app/auth-guard.guard';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatCardModule
   ],
   providers: [LoginService, AuthGuardGuard, {
     provide: 'SocialAuthServiceConfig',
