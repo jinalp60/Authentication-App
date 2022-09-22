@@ -1,0 +1,21 @@
+<span>Please upload your photo {{name}} !</span>
+<form class="example-form" (ngSubmit)="uploadphoto()">
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Image URL</mat-label>
+            <input matInput placeholder="Image URL" value="" [(ngModel)]="imagePath" name="imagePath">
+        </mat-form-field>
+    </div>
+    <div class="center">
+        <h1><b>OR</b></h1>
+    </div>
+    <div>
+        <input class="ng-hide" id="input-file-id" multiple type="file" [(ngModel)]="imagePath" />
+        <label for="input-file-id" class="md-button md-raised md-primary"></label>
+    </div>
+    <div>
+        <span class="update-details-btn" style="margin-left: 30%">
+            <button type="submit" color="primary" id="update-details-btn">Upload</button>
+        </span>
+    </div>
+</form>

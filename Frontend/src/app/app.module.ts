@@ -14,6 +14,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardGuard } from '../app/auth-guard.guard';
 import {MatCardModule} from '@angular/material/card';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { UpdateDetailsComponent } from './update-details/update-details.componen
     SignUpComponent,
     SignInComponent,
     HomeComponent,
-    UpdateDetailsComponent
+    UpdateDetailsComponent,
+    UploadPhotoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { Observable, Observer } from "rxjs";
+
 
 @Component({
   selector: 'app-update-details',
@@ -12,8 +15,10 @@ export class UpdateDetailsComponent implements OnInit {
   phone: string = '';
   email: string = '';
   bio: string = '';
+  imageToShow:any;
+  imagePath:any;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
