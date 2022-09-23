@@ -1,5 +1,35 @@
-<span>Congratulations, {{name}} !! You are now signed in ! &nbsp;&nbsp;&nbsp;&nbsp;  </span> <span><button type="submit" color="primary" id="sign-out-btn" (click)="signOut()">Sign out</button></span>
+<span>Congratulations, {{name}} !! You are now signed in ! &nbsp;&nbsp;&nbsp;&nbsp; </span> <span><button type="submit"
+        color="primary" id="sign-out-btn" (click)="signOut()">Sign out</button></span>
+<form class="example-form">
+    <div class="center">
+        <img src={{imagePath}} alt="Display pic" wclass="center" />
+    </div>
+    <div>
+        <mat-card>
+            <mat-card-title>Name</mat-card-title>
+            <mat-card-subtitle>{{name}}</mat-card-subtitle>
+        </mat-card>
+    </div>
 
+    <div>
+        <mat-card>
+            <mat-card-title>Phone</mat-card-title>
+            <mat-card-subtitle>{{phone}}</mat-card-subtitle>
+        </mat-card>
+    </div>
+    <div>
+        <mat-card>
+            <mat-card-title>Email</mat-card-title>
+            <mat-card-subtitle>{{email}}</mat-card-subtitle>
+        </mat-card>
+    </div>
+    <div>
+        <mat-card>
+            <mat-card-title>Bio</mat-card-title>
+            <mat-card-subtitle>{{bio}}</mat-card-subtitle>
+        </mat-card>
+    </div>
 
-
-
+</form>
+<div>
+</div>

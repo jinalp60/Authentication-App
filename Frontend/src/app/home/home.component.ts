@@ -10,6 +10,11 @@ import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@
 })
 export class HomeComponent implements OnInit {
   name: any = '';
+  error: string = '';
+  phone: string = '';
+  email: string = '';
+  bio: string = '';
+  imagePath: string= 'https://picsum.photos/id/237/200/300';
 
   constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService) { }
 
