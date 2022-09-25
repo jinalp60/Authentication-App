@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,23 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  
+
   password: string = '';
   error: string = '';
-  name: string ='';
+  name: string = '';
   phone: string = '';
   email: string = '';
   bio: string = '';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   userSignUp() {
     console.log('logging in user', this.name, this.phone, this.email, this.password, this.bio);
+    this.http.post('http://localhost:8000/registerUser', { name: this.name, phone: this.phone, email: this.email, password: this.password, bio: this.bio })
+      .subscribe(res => {
+        console.log("received response from server", res);
+      })
   }
-  loadSignIn(){
-    
-  }
+
 }

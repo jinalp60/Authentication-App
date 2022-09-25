@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import { SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from '@
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private socialAuthService: SocialAuthService, private router: Router) { }
+  constructor(private socialAuthService: SocialAuthService, private router: Router, private http: HttpClient) { }
   socialUser: any;
   name: string = '';
   password: string = '';
@@ -19,7 +20,7 @@ export class SignInComponent implements OnInit {
       this.socialUser = user;
       if (this.socialUser) {
         console.log("user:", this.socialUser);
-        sessionStorage.setItem('loggedInUserName',this.socialUser.name);
+        sessionStorage.setItem('loggedInUserName', this.socialUser.name);
         this.router.navigate(['home', this.socialUser.name]);
       } else {
         console.log("user not logged in yet !!");
@@ -29,12 +30,18 @@ export class SignInComponent implements OnInit {
 
   userLogin() {
     console.log("logging in:", this.name, this.password);
-    if (this.name == 'admin' && this.password == 'admin') {
-      sessionStorage.setItem('loggedInUserName',this.name);
-      this.router.navigate(['home', this.name]);
-    } else {
-      console.log("error logging in !");
-    }
+  
+    this.http.post<{isLogIn: any}>('http://localhost:8000/userLogin', { name: this.name, password: this.password })
+      .subscribe(res => {
+        console.log("received response from server", res);
+        if (res && res.isLogIn) {
+          sessionStorage.setItem('loggedInUserName', this.name);
+          this.router.navigate(['home', this.name]);
+        } else {
+          console.log("error logging in !");
+        }
+      })
+    
   }
 
 }

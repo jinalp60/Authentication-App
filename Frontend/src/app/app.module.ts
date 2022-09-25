@@ -7,6 +7,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from  '@angular/common/http';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SocialAuthServiceConfig, SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { LoginService } from '../app/login.service';
@@ -33,7 +34,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
     MatFormFieldModule,
     MatInputModule,
     SocialLoginModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [LoginService, AuthGuardGuard, {
     provide: 'SocialAuthServiceConfig',
