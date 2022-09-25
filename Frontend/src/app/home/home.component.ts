@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   phone: string = '';
   email: string = '';
   bio: string = '';
+  
   imagePath: string= 'https://picsum.photos/id/237/200/300';
 
   constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService) { }

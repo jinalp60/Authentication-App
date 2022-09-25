@@ -14,6 +14,7 @@ export class SignInComponent implements OnInit {
   socialUser: any;
   name: string = '';
   password: string = '';
+  error: string = '';
 
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
@@ -39,6 +40,7 @@ export class SignInComponent implements OnInit {
           this.router.navigate(['home', this.name]);
         } else {
           console.log("error logging in !");
+          this.error = "Login unsuccessful!";
         }
       })
     

@@ -41,10 +41,10 @@ app.post('/registerUser', (req, res, next) => {
 
         if (err) {
             console.log(`Error writing file: ${err}`);
-            res.status(200).json({ message: "error registering user" });
+            res.status(200).json({ message: "Error registering user" });
         } else {
             console.log(`File is written successfully!`);
-            res.status(200).json({ message: "user registered" });
+            res.status(200).json({ message: "Sign up successful!" });
         }
     });
 
@@ -113,7 +113,7 @@ app.patch('/updateUserProfile', (req, res, next) => {
             }
         });
     } else {
-        console.log("user not found");
+        console.log("User not found");
         res.status(200).json({ isUpdated: false });
     }
 
