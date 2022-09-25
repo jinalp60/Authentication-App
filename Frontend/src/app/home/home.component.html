@@ -4,32 +4,32 @@
     <div class="center">
         <img src={{imagePath}} alt="Display pic" wclass="center" width="100" height="100" />
     </div>
-    <div>
-        <mat-card>
-            <mat-card-title>Name</mat-card-title>
-            <mat-card-subtitle>{{name}}</mat-card-subtitle>
-        </mat-card>
+    <div style="margin-left: 25%;">
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" [(ngModel)]="name" name="name" readonly>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Phone</mat-label>
+                <input matInput placeholder="phone" [(ngModel)]="phone" name="phone" readonly>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="email" name="email" readonly>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Bio</mat-label>
+                <input matInput placeholder="Bio" [(ngModel)]="bio" name="bio" readonly>
+            </mat-form-field>
+        </div>
     </div>
-
-    <div>
-        <mat-card>
-            <mat-card-title>Phone</mat-card-title>
-            <mat-card-subtitle>{{phone}}</mat-card-subtitle>
-        </mat-card>
-    </div>
-    <div>
-        <mat-card>
-            <mat-card-title>Email</mat-card-title>
-            <mat-card-subtitle>{{email}}</mat-card-subtitle>
-        </mat-card>
-    </div>
-    <div>
-        <mat-card>
-            <mat-card-title>Bio</mat-card-title>
-            <mat-card-subtitle>{{bio}}</mat-card-subtitle>
-        </mat-card>
-    </div>
-
 </form>
 <div>
 </div>

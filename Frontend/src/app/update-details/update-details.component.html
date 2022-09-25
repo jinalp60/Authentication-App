@@ -26,7 +26,7 @@
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Upadte Image URL</mat-label>
+            <mat-label>Update Image URL</mat-label>
             <input matInput placeholder="Image URL" [(ngModel)]="imagePath" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </div>
@@ -34,8 +34,8 @@
         <h1><b>OR</b></h1>
     </div>
     <div>
-        <input class="ng-hide" id="input-file-id" multiple type="file" [(ngModel)]="imagePath"
-            [ngModelOptions]="{standalone: true}">
+        <input class="ng-hide" id="input-file-id" multiple type="file" [(ngModel)]="imageFile"
+            [ngModelOptions]="{standalone: true}" (change)="onFileSelected($event)">
         <label for="input-file-id" class="md-button md-raised md-primary"></label>
     </div>
     <div>

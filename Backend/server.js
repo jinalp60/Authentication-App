@@ -68,7 +68,7 @@ app.post('/userLogin', (req, res, next) => {
 })
 
 app.get('/getUserProfile/:name', (req, res, next) => {
-    console.log(req)
+    // console.log(req)
     let flag = false;
     for (let user of users) {
         if (user.name == req.params.name) {
