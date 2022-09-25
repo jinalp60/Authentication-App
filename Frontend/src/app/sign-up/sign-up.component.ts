@@ -23,9 +23,12 @@ export class SignUpComponent implements OnInit {
 
   userSignUp() {
     console.log('logging in user', this.name, this.phone, this.email, this.password, this.bio);
-    this.http.post('http://localhost:8000/registerUser', { name: this.name, phone: this.phone, email: this.email, password: this.password, bio: this.bio })
+    this.http.post<{message: any}>('http://localhost:8000/registerUser', { name: this.name, phone: this.phone, email: this.email, password: this.password, bio: this.bio })
       .subscribe(res => {
         console.log("received response from server", res);
+        if(res && res.message) {
+          this.error = res.message;
+        }
       })
   }
 
