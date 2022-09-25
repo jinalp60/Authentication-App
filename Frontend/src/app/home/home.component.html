@@ -2,7 +2,7 @@
         color="primary" id="sign-out-btn" (click)="signOut()">Sign out</button></span>
 <form class="example-form">
     <div class="center">
-        <img src={{imagePath}} alt="Display pic" wclass="center" />
+        <img src={{imagePath}} alt="Display pic" wclass="center" width="100" height="100" />
     </div>
     <div>
         <mat-card>
@@ -32,4 +32,9 @@
 
 </form>
 <div>
+</div>
+<div style="margin-top: 10%;" class="center">
+    <h3> Want to update details? <span class="sign-up-button">
+            <button type="submit" color="primary" id="sign-up-btn" routerLink="./update">Update</button>
+        </span></h3>
 </div>

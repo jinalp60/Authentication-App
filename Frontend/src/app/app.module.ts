@@ -16,6 +16,7 @@ import { AuthGuardGuard } from '../app/auth-guard.guard';
 import {MatCardModule} from '@angular/material/card';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
     MatInputModule,
     SocialLoginModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginService, AuthGuardGuard, {
     provide: 'SocialAuthServiceConfig',

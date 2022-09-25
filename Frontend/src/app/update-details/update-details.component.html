@@ -1,39 +1,41 @@
+<div id="error">{{error}}</div>
 <form class="example-form" (ngSubmit)="update()">
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" value="" [(ngModel)]="name" name="name">
+            <input matInput placeholder="Name" [(ngModel)]="name" name="name">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Phone</mat-label>
-            <input matInput placeholder="phone" value="" [(ngModel)]="phone" name="phone">
+            <input matInput placeholder="phone" [(ngModel)]="phone" name="phone">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" value="" [(ngModel)]="email" name="email">
+            <input matInput placeholder="Email" [(ngModel)]="email" name="email">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Bio</mat-label>
-            <input matInput placeholder="Bio" value="" [(ngModel)]="bio" name="bio">
+            <input matInput placeholder="Bio" [(ngModel)]="bio" name="bio">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Upadte Image URL</mat-label>
-            <input matInput placeholder="Image URL" value="" [(ngModel)]="imagePath" name="imagePath">
+            <input matInput placeholder="Image URL" [(ngModel)]="imagePath" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
     </div>
     <div class="center">
         <h1><b>OR</b></h1>
     </div>
     <div>
-        <input class="ng-hide" id="input-file-id" multiple type="file" [(ngModel)]="imagePath" />
+        <input class="ng-hide" id="input-file-id" multiple type="file" [(ngModel)]="imagePath"
+            [ngModelOptions]="{standalone: true}">
         <label for="input-file-id" class="md-button md-raised md-primary"></label>
     </div>
     <div>
