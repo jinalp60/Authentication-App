@@ -73,7 +73,7 @@ app.get('/getUserProfile/:name', (req, res, next) => {
     for (let user of users) {
         if (user.name == req.params.name) {
             flag = true;
-            res.status(200).json(user);
+            res.status(200).json({ user, isUserFound: true });
             break;
         }
     }
@@ -95,7 +95,7 @@ app.patch('/updateUserProfile', (req, res, next) => {
             user.bio = req.body.bio;
             user.email = req.body.email;
             user.phone = req.body.phone;
-            user.imagePath=req.body.imagePath;
+            user.imagePath = req.body.imagePath;
             break;
         }
     }

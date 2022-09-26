@@ -15,36 +15,39 @@ export class HomeComponent implements OnInit {
   phone: string = '';
   email: string = '';
   bio: string = '';
-  sample:any='';
+  sample: any = '';
   data: any = '';
-  
-  imagePath: string= "";
 
-  constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService,private http: HttpClient) { }
+  imagePath: string = "";
+
+  constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService, private http: HttpClient) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('name')) {
       this.name = this.route.snapshot.paramMap.get('name')
     }
     console.log(this.name);
-    
-    this.http.get<{isLogIn: any}>('http://localhost:8000/getUserProfile/'+this.name)
+
+    this.http.get<{ user: any, isUserFound: any }>('http://localhost:8000/getUserProfile/' + this.name)
       .subscribe(res => {
         console.log("received response from server", res);
-      this.data=res;
-      this.name=this.data.name;
-      this.phone=this.data.phone;
-      this.email=this.data.email;
-      this.bio=this.data.bio;
-       this.imagePath=this.data.imagePath;
-      })
-      
-      //this.phone=this.data.phone;
+        if (res && res.isUserFound) {
+          this.data = res.user;
+          this.name = this.data.name;
+          this.phone = this.data.phone;
+          this.email = this.data.email;
+          this.bio = this.data.bio;
+          this.imagePath = this.data.imagePath;
+        }
 
-    
+      })
+
+    //this.phone=this.data.phone;
+
+
   }
-  
-  
+
+
 
   signOut() {
     console.log("signing out !!");
@@ -52,6 +55,6 @@ export class HomeComponent implements OnInit {
     this.socialAuthService.signOut();
     this.router.navigate(['sign-in']);
   }
-  
+
 
 }
