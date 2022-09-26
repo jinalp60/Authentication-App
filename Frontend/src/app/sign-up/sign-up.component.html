@@ -1,39 +1,47 @@
 <div id="error">{{error}}</div>
-<form class="example-form" (ngSubmit)="userSignUp()">
+<form class="example-form" [formGroup]="form" (ngSubmit)="userSignUp()">
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" value="" [(ngModel)]="name" name="name">
+            <input matInput formControlName="name" value="" name="name">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Phone</mat-label>
-            <input matInput placeholder="phone" value="" [(ngModel)]="phone" name="phone">
+            <input matInput formControlName="phone" id="phone" type="text" class="form-control">
+            <div *ngIf="f['phone'].touched && f['phone']invalid" class="alert alert-danger">
+                <div *ngIf="f['phone'].errors?.['required']">Mobile Number is required.</div>
+                <div *ngIf="f['phone'].errors?.['pattern']">Please, Enter 10 digit Mobile Number.</div>
+            </div>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" value="" [(ngModel)]="email" name="email">
+            <input matInput formControlName="email" value="" name="email">
+            <div *ngIf="f['email'].touched && f['email']invalid" class="alert alert-danger">
+                <div *ngIf="f['email'].errors?.['required']">Email is required.</div>
+                <div *ngIf="f['email'].errors?.['pattern']">Please, Enter a valid email ID.</div>
+            </div>
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Password" value="" [(ngModel)]="password" name="password">
+            <input matInput formControlName="password" value="" name="password">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Bio</mat-label>
-            <input matInput placeholder="Bio" value="" [(ngModel)]="bio" name="bio">
+            <input matInput formControlName="bio" value="" name="bio">
         </mat-form-field>
     </div>
     <div>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Image path</mat-label>
-            <input matInput placeholder="imagePath" value="" [(ngModel)]="imagePath" name="imagePath">
+            <input matInput formControlName="imagePath" value="" name="imagePath">
         </mat-form-field>
     </div>
     <div>

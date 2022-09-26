@@ -28,16 +28,25 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.name);
     
-    this.http.get<{isLogIn: any}>('http://localhost:8000/getUserProfile/'+this.name)
+    this.http.get<{isLogIn: any, isUserFound: any}>('http://localhost:8000/getUserProfile/'+this.name)
       .subscribe(res => {
         console.log("received response from server", res);
-      this.data=res;
-      this.name=this.data.name;
-      this.phone=this.data.phone;
-      this.email=this.data.email;
-      this.bio=this.data.bio;
-       this.imagePath=this.data.imagePath;
-      })
+        if (res && res.isUserFound) {
+              this.data=res;
+              this.name=this.data.name;
+              this.phone=this.data.phone;
+              this.email=this.data.email;
+              this.bio=this.data.bio;
+              if (this.data.imagePath){
+                  this.imagePath=this.data.imagePath;
+                }
+              else{
+                  console.log("Default image");
+                  this.imagePath="http://localhost:8082/AB.png";
+                  }
+                  }
+              })
+    
       
       //this.phone=this.data.phone;
 
