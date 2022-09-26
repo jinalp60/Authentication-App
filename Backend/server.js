@@ -68,11 +68,12 @@ app.post('/userLogin', (req, res, next) => {
 })
 
 app.get('/getUserProfile/:name', (req, res, next) => {
+    // console.log(req)
     let flag = false;
     for (let user of users) {
         if (user.name == req.params.name) {
             flag = true;
-            res.status(200).json(user);
+            res.status(200).json({ user, isUserFound: true });
             break;
         }
     }
@@ -90,10 +91,11 @@ app.patch('/updateUserProfile', (req, res, next) => {
         if (req.body.name == user.name) {
             flag = true;
             console.log("true");
-            user.password = req.body.password;
+            //user.password = req.body.password;
             user.bio = req.body.bio;
             user.email = req.body.email;
             user.phone = req.body.phone;
+            user.imagePath = req.body.imagePath;
             break;
         }
     }

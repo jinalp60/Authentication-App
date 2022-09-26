@@ -1,1 +1,5 @@
-[{"name":"sss","password":"pass1","bio":"bioss1","email":"emailsss1","phone":"phone1"},{"name":"shri hariji","phone":"ekjd","email":"jadxjQ","password":"pass2","bio":"cjakwe"},{"name":"aaa","phone":"ejhdwej","email":"hdeja","password":"XHJ","bio":"ejghewj"},{"name":"aaa","phone":"ejhdwej","email":"hdeja","password":"XHJ","bio":"ejghewj"}]
+<<<<<<< HEAD
+[]
+=======
+[{"name":"Jinal","phone":"987654321","email":"kapatelj@uwindsor.ca","password":"Jinal","bio":"Student at University of Windsor","imagePath":"http://localhost:8081/Jinal2.jpeg"}]
+>>>>>>> origin/sample_api_integration

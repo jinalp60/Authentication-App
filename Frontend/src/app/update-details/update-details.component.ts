@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { Observable, Observer } from "rxjs";
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -11,19 +13,65 @@ import { Observable, Observer } from "rxjs";
 export class UpdateDetailsComponent implements OnInit {
 
   error: string = '';
-  name: string ='';
+  name: any;
   phone: string = '';
   email: string = '';
   bio: string = '';
-  imageToShow:any;
-  imagePath:any;
+  imageToShow: any;
+  imagePath: string = '';
+  imageFile: any;
+  data: any;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+    if (this.route.snapshot.paramMap.get('name')) {
+      this.name = this.route.snapshot.paramMap.get('name')
+    }
+    console.log(this.name);
+
+    this.http.get<{ isLogIn: any }>('http://localhost:8000/getUserProfile/' + this.name)
+      .subscribe(res => {
+        console.log("received response from server", res);
+        this.data = res;
+        this.name = this.data.name;
+        this.phone = this.data.phone;
+        this.email = this.data.email;
+        this.bio = this.data.bio;
+        this.imagePath = this.data.imagePath;
+        //if(res.hasOwnProperty('imagePath')){
+        // this.imagePath=this.data.imagePath;
+        //}
+        //else{
+        // this.imagePath="http://127.0.0.1:8080/src/assets/User_dp/Photo.jpg";
+        //}
+      })
+  }
+
+  onFileSelected(event: any) {
+    console.log(event);
+    const file: File = event.target.files[0];
+
+    if (file) {
+      // console.log("http://localhost:8081/" + file.name);
+      this.imagePath = "http://localhost:8082/" + file.name;
+    }
+
   }
 
   update() {
-    console.log('User details updated', this.name, this.phone, this.email, this.bio);
+    console.log('logging in user', this.name, this.phone, this.email, this.bio, this.imagePath);
+    this.http.patch<{ message: any }>('http://localhost:8000/updateUserProfile', { name: this.name, phone: this.phone, email: this.email, bio: this.bio, imagePath: this.imagePath })
+      .subscribe(res => {
+        console.log("received response from server", res);
+
+        if (res && res.message) {
+          this.error = res.message;
+        }
+        this.router.navigate(['home', this.name]);
+
+      })
+
   }
 }
+

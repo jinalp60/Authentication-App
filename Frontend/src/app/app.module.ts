@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from  '@angular/common/http';
@@ -16,6 +16,7 @@ import { AuthGuardGuard } from '../app/auth-guard.guard';
 import {MatCardModule} from '@angular/material/card';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
     MatInputModule,
     SocialLoginModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [LoginService, AuthGuardGuard, {
     provide: 'SocialAuthServiceConfig',
