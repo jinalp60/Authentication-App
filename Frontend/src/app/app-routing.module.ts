@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'home/:name/uploadPhoto', component: UploadPhotoComponent
+  },
+  {
+    path: 'manage-tasks/:name', component: ManageTasksComponent, canActivate: [AuthGuardGuard]
   }
 ];
 

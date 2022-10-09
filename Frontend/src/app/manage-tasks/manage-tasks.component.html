@@ -1,0 +1,119 @@
+<mat-tab-group>
+    <mat-tab label="All Tasks">
+        <table mat-table [dataSource]="allTasks" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Task Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-tab>
+
+    <mat-tab label="Active Tasks">
+        <table mat-table [dataSource]="activeTasks" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Task Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggleActive() : null"
+                        [checked]="activeSelection.hasValue() && isAllSelectedActive()"
+                        [indeterminate]="activeSelection.hasValue() && !isAllSelectedActive()" [aria-label]="checkboxLabelActive()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? activeSelection.toggle(row) : null"
+                        [checked]="activeSelection.isSelected(row)" [aria-label]="checkboxLabelActive(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsActive"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsActive;"></tr>
+        </table>
+        <div class="center">
+            <span>
+                <button type="submit" color="primary" id="complete-tasks-btn" (click)="completeSelectedTasks()">Complete Selected Tasks</button>
+            </span> 
+        </div>
+    </mat-tab>
+    <mat-tab label="Completed Tasks">
+        <table mat-table [dataSource]="completedTasks" class="mat-elevation-z8">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Task Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggleCompleted() : null"
+                        [checked]="completedSelection.hasValue() && isAllSelectedCompleted()"
+                        [indeterminate]="completedSelection.hasValue() && !isAllSelectedCompleted()" [aria-label]="checkboxLabelCompleted()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? completedSelection.toggle(row) : null"
+                        [checked]="completedSelection.isSelected(row)" [aria-label]="checkboxLabelCompleted(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsCompleted"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsCompleted;"></tr>
+        </table>
+        <div class="center">
+            <span>
+                <button type="submit" color="primary" id="remove-tasks-btn" (click)="removeSelectedTasks()">Remove Selected Tasks</button>
+            </span> 
+        </div>
+    </mat-tab>
+</mat-tab-group>
