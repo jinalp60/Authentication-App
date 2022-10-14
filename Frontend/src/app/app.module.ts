@@ -4,19 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from  '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SocialAuthServiceConfig, SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { LoginService } from '../app/login.service';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardGuard } from '../app/auth-guard.guard';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignInComponent,
     HomeComponent,
     UpdateDetailsComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+    ManageTasksComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
+    MatTableModule,
+    MatCheckboxModule,
     SocialLoginModule,
     MatCardModule,
     HttpClientModule,
