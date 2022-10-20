@@ -25,10 +25,10 @@ export class ManageTasksComponent implements OnInit {
   completedTasks: PeriodicElement[] = [];
   displayedColumnsActive: string[] = ['position', 'name', 'status', 'select'];
   displayedColumnsCompleted: string[] = ['position', 'name', 'status', 'select'];
-  displayedColumns: string[] = ['position', 'name', 'status'];
+  displayedColumns: string[]= ['position', 'name', 'status'];
   activeSelection = new SelectionModel<PeriodicElement>(true, []);
   completedSelection = new SelectionModel<PeriodicElement>(true, []);
-
+  searchTerm: any = '';
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {

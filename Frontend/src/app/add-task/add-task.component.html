@@ -1,0 +1,15 @@
+<form class="example-form">
+    <div style="margin-left: 25%;">
+        <div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" name="taskname" [(ngModel)]="taskname">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="center"> 
+        <span class="pure-button pure-button-primary">
+            <button type="submit" color="primary" id="add-tasks-btn" (click)="addTasks()">Add Task</button>
+        </span> 
+    </div>
+</form>

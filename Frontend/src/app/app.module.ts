@@ -21,7 +21,8 @@ import { UpdateDetailsComponent } from './update-details/update-details.componen
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
-
+import { AddTaskComponent } from './add-task/add-task.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
     HomeComponent,
     UpdateDetailsComponent,
     UploadPhotoComponent,
-    ManageTasksComponent
+    ManageTasksComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
     MatCardModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [LoginService, AuthGuardGuard, {
     provide: 'SocialAuthServiceConfig',
