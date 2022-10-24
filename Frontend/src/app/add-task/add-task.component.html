@@ -1,15 +1,18 @@
+<div style="margin-bottom: 10%">
+    <span>You are signed in as {{name}} !! &nbsp;&nbsp;&nbsp;&nbsp; </span> <span><button type="submit"
+        color="primary" id="sign-out-btn" (click)="signOut()">Sign out</button>
+    </span>
+</div>
 <form class="example-form">
-    <div style="margin-left: 25%;">
-        <div>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Name" name="taskname" [(ngModel)]="taskname">
-            </mat-form-field>
-        </div>
+    <div style="margin-left: 10%;">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Task Name</mat-label>
+            <input matInput placeholder="Name" name="taskname" [(ngModel)]="taskname">
+        </mat-form-field>
     </div>
-    <div class="center"> 
+    <div style="margin-left: 42%;">
         <span class="pure-button pure-button-primary">
             <button type="submit" color="primary" id="add-tasks-btn" (click)="addTasks()">Add Task</button>
-        </span> 
+        </span>
     </div>
 </form>
