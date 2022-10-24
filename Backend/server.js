@@ -192,6 +192,7 @@ app.post('/removeTasks', (req, res, next) => {
                 let task = user.tasks[i];
                 if(tasksToBeRemoved.includes(task.name)) {
                     user.tasks.splice(i,1);
+                    i--;
                 }
             }
             break;

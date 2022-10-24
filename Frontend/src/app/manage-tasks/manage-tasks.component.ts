@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { SelectMultipleControlValueAccessor } from '@angular/forms';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 export interface PeriodicElement {
   position: number;
@@ -25,11 +25,12 @@ export class ManageTasksComponent implements OnInit {
   completedTasks: PeriodicElement[] = [];
   displayedColumnsActive: string[] = ['position', 'name', 'status', 'select'];
   displayedColumnsCompleted: string[] = ['position', 'name', 'status', 'select'];
-  displayedColumns: string[]= ['position', 'name', 'status'];
+  displayedColumns: string[] = ['position', 'name', 'status'];
   activeSelection = new SelectionModel<PeriodicElement>(true, []);
   completedSelection = new SelectionModel<PeriodicElement>(true, []);
-  searchTerm: any = '';
-  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  activeFilter: any = '';
+  completedFilter: any = '';
+  constructor(private route: ActivatedRoute, private router: Router, private socialAuthService: SocialAuthService, private http: HttpClient) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('name')) {
@@ -55,11 +56,11 @@ export class ManageTasksComponent implements OnInit {
           })
           console.log("all tasks:", this.allTasks);
 
-          
+
           this.activeTasks = JSON.parse(stringifiedTasks);
           this.activeTasks = this.activeTasks.filter((task: any) => task.status == "active");
-          
-          this.activeTasks = this.activeTasks.map((obj,index) => {
+
+          this.activeTasks = this.activeTasks.map((obj, index) => {
             obj.position = index + 1;
             return obj;
           })
@@ -68,7 +69,7 @@ export class ManageTasksComponent implements OnInit {
 
           this.completedTasks = JSON.parse(stringifiedTasks);
           this.completedTasks = this.completedTasks.filter((task: any) => task.status == "completed");
-          
+
           this.completedTasks = this.completedTasks.map((obj, index) => {
             obj.position = index + 1;
             return obj;
@@ -117,32 +118,59 @@ export class ManageTasksComponent implements OnInit {
     return `${this.completedSelection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
-  completeSelectedTasks(){
+  completeSelectedTasks() {
     console.log("Completing Tasks", this.activeSelection.selected);
 
-    this.http.post<{message: any, isUpdated: any}>('http://localhost:8000/completeTasks', { name: this.name, tasks: this.activeSelection.selected})
+    this.http.post<{ message: any, isUpdated: any }>('http://localhost:8000/completeTasks', { name: this.name, tasks: this.activeSelection.selected })
       .subscribe(res => {
         console.log("received response from server", res);
-        if(res && res.message) {
+        if (res && res.message) {
           this.error = res.message;
-        } else if(res && res.isUpdated) {
+        } else if (res && res.isUpdated) {
           this.refreshTasks();
+          this.activeFilter = '';
         }
       })
   }
 
-  removeSelectedTasks(){
+  removeSelectedTasks() {
     console.log("Removing Tasks", this.completedSelection.selected);
 
-    this.http.post<{message: any, isUpdated: any}>('http://localhost:8000/removeTasks', { name: this.name, tasks: this.completedSelection.selected})
+    this.http.post<{ message: any, isUpdated: any }>('http://localhost:8000/removeTasks', { name: this.name, tasks: this.completedSelection.selected })
       .subscribe(res => {
         console.log("received response from server", res);
-        if(res && res.message) {
+        if (res && res.message) {
           this.error = res.message;
-        } else if(res && res.isUpdated) {
+        } else if (res && res.isUpdated) {
           this.refreshTasks();
+          this.completedFilter = '';
         }
       })
+  }
+
+  applyFilterActiveTasks(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim();
+
+    this.activeTasks = this.activeTasks.filter((task: any) => {
+      const jsonTask = JSON.stringify(task);
+      return jsonTask.includes(filterValue);
+    })
+  }
+
+  applyFilterCompletedTasks(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim();
+
+    this.completedTasks = this.completedTasks.filter((task: any) => {
+      const jsonTask = JSON.stringify(task);
+      return jsonTask.includes(filterValue);
+    })
+  }
+
+  signOut() {
+    console.log("signing out !!");
+    sessionStorage.removeItem('loggedInUserName');
+    this.socialAuthService.signOut();
+    this.router.navigate(['sign-in']);
   }
 
 
