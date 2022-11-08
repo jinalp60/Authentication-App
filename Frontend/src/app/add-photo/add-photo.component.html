@@ -1,0 +1,25 @@
+<div class="center" style="margin-top: 5%;">
+
+    <div style="margin-bottom: 10%">
+        <span>You are signed in as {{name}} !! &nbsp;&nbsp;&nbsp;&nbsp; </span> <span><button type="submit"
+            color="primary" id="sign-out-btn" (click)="signOut()">Sign out</button>
+        </span>
+    </div>
+
+    <form class="add-photo-form">
+        <div style="margin-left: 15%;">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Photo Label</mat-label>
+                <input matInput placeholder="Label" name="photolabel" [(ngModel)]="photolabel">
+            </mat-form-field>
+        </div>
+        <div style="margin-left: 15%;">
+            <input type="file" [(ngModel)]="photoFile" [ngModelOptions]="{standalone: true}" (change)="onFileSelected($event)">
+        </div>
+        <div style="margin-left: 42%;">
+            <span class="pure-button pure-button-primary">
+                <button type="submit" color="primary" id="add-photo-btn" (click)="addPhoto()">Add Photo</button>
+            </span>
+        </div>
+    </form>
+</div>

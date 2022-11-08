@@ -148,8 +148,8 @@ app.post('/completeTasks', (req, res, next) => {
         if (req.body.name == user.name) {
             flag = true;
 
-            for(let task of user.tasks) {
-                if(tasksToBeCompleted.includes(task.name)) {
+            for (let task of user.tasks) {
+                if (tasksToBeCompleted.includes(task.name)) {
                     task.status = 'completed';
                 }
             }
@@ -175,7 +175,7 @@ app.post('/completeTasks', (req, res, next) => {
         console.log("User not found");
         res.status(200).json({ isUpdated: false });
     }
-    
+
 })
 
 app.post('/removeTasks', (req, res, next) => {
@@ -188,10 +188,10 @@ app.post('/removeTasks', (req, res, next) => {
         if (req.body.name == user.name) {
             flag = true;
 
-            for(let i=0; i<user.tasks.length; i++) {
+            for (let i = 0; i < user.tasks.length; i++) {
                 let task = user.tasks[i];
-                if(tasksToBeRemoved.includes(task.name)) {
-                    user.tasks.splice(i,1);
+                if (tasksToBeRemoved.includes(task.name)) {
+                    user.tasks.splice(i, 1);
                     i--;
                 }
             }
@@ -217,7 +217,7 @@ app.post('/removeTasks', (req, res, next) => {
         console.log("User not found");
         res.status(200).json({ isUpdated: false });
     }
-    
+
 })
 
 app.post('/addTasks', (req, res, next) => {
@@ -228,57 +228,116 @@ app.post('/addTasks', (req, res, next) => {
 
     for (let user of users) {
         if (req.body.name == user.name) {
-            
-            if(tasksToBeAdded.length>0)
-                {
-                    flag = true;
-                    for(let i=0; i<user.tasks.length; i++)
-                        {
-                            if(user.tasks[i].name===tasksToBeAdded)
-                                {
-                                    console.log("duplicate:", user.tasks[i]);
-                                    flag=false
-                                    res.status(200).json({ duplicateTask:True});
-                                    break;
-                                }
-                
-                        }
-                        if (flag){
-                            task_dict={}
-                            task_dict["name"]=tasksToBeAdded
-                            task_dict["status"]="active"
-                            user.tasks.push(task_dict)
-                        }
+
+            if (tasksToBeAdded.length > 0) {
+                flag = true;
+                for (let i = 0; i < user.tasks.length; i++) {
+                    if (user.tasks[i].name === tasksToBeAdded) {
+                        console.log("duplicate:", user.tasks[i]);
+                        flag = false
+                        res.status(200).json({ duplicateTask: True });
+                        break;
+                    }
+
                 }
-            else
-                {
-                    res.status(200).json({ emptyTask:True});
+                if (flag) {
+                    task_dict = {}
+                    task_dict["name"] = tasksToBeAdded
+                    task_dict["status"] = "active"
+                    user.tasks.push(task_dict)
                 }
+            }
+            else {
+                res.status(200).json({ emptyTask: True });
+            }
         }
     }
-    
+
 
     if (flag) {
         console.log(users);
         const data = JSON.stringify(users);
         fs.writeFile('./DB.json', data, 'utf8', (err) => {
-        if (err) {
-            console.log(`Error writing file: ${err}`);
-            res.status(200).json({ message: "error registering user" });
-        } else {
-            console.log(`File is written successfully!`);
-            res.status(200).json({ isUpdated: true });
-        }
+            if (err) {
+                console.log(`Error writing file: ${err}`);
+                res.status(200).json({ message: "error registering user" });
+            } else {
+                console.log(`File is written successfully!`);
+                res.status(200).json({ isUpdated: true });
+            }
         });
-        } 
-        
-        else {
+    }
+
+    else {
         console.log("User not found");
         res.status(200).json({ isUpdated: false });
+    }
+
+})
+
+app.post('/addPhoto', (req, res, next) => {
+    console.log("complete tasks user req:", req.body);
+    let flag = false;
+
+    for (let user of users) {
+        if (req.body.name == user.name) {
+            user.photos.unshift({ imageUrl: req.body.imageUrl, label: req.body.label });
+            flag = true;
+            break;
         }
+    }
 
-    })
+    if (flag) {
+        console.log(users);
+        const data = JSON.stringify(users);
+        fs.writeFile('./DB.json', data, 'utf8', (err) => {
+            if (err) {
+                console.log(`Error writing file: ${err}`);
+                res.status(200).json({ message: "error registering user" });
+            } else {
+                console.log(`File is written successfully!`);
+                res.status(200).json({ message: "Success" });
+            }
+        });
+    }
+    else {
+        console.log("User not found");
+        res.status(200).json({ message: "Failure" });
+    }
 
+})
+
+app.post('/deletePhoto', (req, res, next) => {
+    console.log("complete tasks user req:", req.body);
+    let flag = false;
+
+    for (let user of users) {
+        if (req.body.name == user.name) {
+            user.photos.splice(req.body.photoIndex, 1);
+            flag = true;
+            break;
+        }
+    }
+
+    if (flag) {
+        console.log(users);
+        const data = JSON.stringify(users);
+        fs.writeFile('./DB.json', data, 'utf8', (err) => {
+            if (err) {
+                console.log(`Error writing file: ${err}`);
+                res.status(200).json({ message: "error registering user" });
+            } else {
+                console.log(`File is written successfully!`);
+                res.status(200).json({ message: "Success" });
+            }
+        });
+    }
+    else {
+        console.log("User not found");
+        res.status(200).json({ message: "Failure" });
+    }
+
+})
 
 const server = app.listen(8000, function () {
     const host = server.address().address

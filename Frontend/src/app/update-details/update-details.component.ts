@@ -54,7 +54,7 @@ export class UpdateDetailsComponent implements OnInit {
 
     if (file) {
       // console.log("http://localhost:8081/" + file.name);
-      this.imagePath = "http://localhost:8082/" + file.name;
+      this.imagePath = "http://localhost:8081/" + file.name;
     }
 
   }

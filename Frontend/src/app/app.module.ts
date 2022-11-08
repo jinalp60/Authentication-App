@@ -17,11 +17,14 @@ import { AuthGuardGuard } from '../app/auth-guard.guard';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { UpdateDetailsComponent } from './update-details/update-details.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
+import { AddPhotoComponent } from './add-photo/add-photo.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { AddTaskComponent } from './add-task/add-task.component';
     UpdateDetailsComponent,
     UploadPhotoComponent,
     ManageTasksComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    PhotoGalleryComponent,
+    AddPhotoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
     MatTabsModule,
     MatTableModule,
     MatCheckboxModule,
+    MatGridListModule,
     SocialLoginModule,
     MatCardModule,
     HttpClientModule,
