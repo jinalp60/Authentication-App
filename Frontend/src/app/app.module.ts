@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SocialAuthServiceConfig, SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider } from '@abacritt/angularx-social-login';
@@ -25,6 +26,8 @@ import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component';
 import { AddPhotoComponent } from './add-photo/add-photo.component';
+import { UpdateGalleryPhotoComponent } from './update-gallery-photo/update-gallery-photo.component';
+import { DeletePhotoDialogComponent } from './delete-photo-dialog/delete-photo-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
     ManageTasksComponent,
     AddTaskComponent,
     PhotoGalleryComponent,
-    AddPhotoComponent
+    AddPhotoComponent,
+    UpdateGalleryPhotoComponent,
+    DeletePhotoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
     MatTableModule,
     MatCheckboxModule,
     MatGridListModule,
+    MatDialogModule,
     SocialLoginModule,
     MatCardModule,
     HttpClientModule,
@@ -67,6 +73,7 @@ import { AddPhotoComponent } from './add-photo/add-photo.component';
       ],
     } as SocialAuthServiceConfig,
   },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UpdateGalleryPhotoComponent]
 })
 export class AppModule { }

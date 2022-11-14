@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Update Photo:</h2>
+
+<mat-dialog-content>
+
+    <div style="margin-top:5%">
+        <input type="file" [(ngModel)]="photoFile" [ngModelOptions]="{standalone: true}" (change)="onFileSelected($event)">
+    </div>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="update()">Update</button>
+</mat-dialog-actions>
