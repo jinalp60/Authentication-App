@@ -8,6 +8,8 @@ import { UpdateDetailsComponent } from './update-details/update-details.componen
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { ManageTasksComponent } from './manage-tasks/manage-tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { PhotoGalleryComponent } from './photo-gallery/photo-gallery.component'
+import { AddPhotoComponent } from './add-photo/add-photo.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,13 @@ const routes: Routes = [
     path: 'manage-tasks/:name', component: ManageTasksComponent, canActivate: [AuthGuardGuard]
   },
   {
-    path: 'add-tasks/:name', component: AddTaskComponent
+    path: 'add-tasks/:name', component: AddTaskComponent, canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'list-photos/:name', component: PhotoGalleryComponent, canActivate: [AuthGuardGuard]
+  },
+  {
+    path: 'add-photo/:name', component: AddPhotoComponent, canActivate: [AuthGuardGuard]
   }
 ];
 

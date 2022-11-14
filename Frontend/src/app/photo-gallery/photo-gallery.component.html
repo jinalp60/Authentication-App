@@ -1,0 +1,28 @@
+<div style="margin-left: -1%;margin-bottom: 5%">
+    <span>You are signed in as {{name}} !! &nbsp;&nbsp;&nbsp;&nbsp; </span> <span><button type="submit" color="primary"
+            id="sign-out-btn" (click)="signOut()">Sign out</button>
+    </span>
+</div>
+<div class="center" style="margin-left:35%">
+    <span class="pure-button pure-button-primary">
+        <button type="submit" color="primary" id="add-photo-btn" routerLink="/add-photo/{{name}}">Add
+            Photo</button>
+    </span>
+</div>
+
+<div id="grid-div">
+    <mat-grid-list cols="3">
+        <mat-grid-tile *ngFor="let photo of photos;let indexOfelement=index">
+            <div>
+                <img src={{photo.imageUrl}} alt="Mountains" style="width:100%">
+            </div>
+            <mat-grid-tile-header>
+                <h3>{{photo.label}} </h3>
+            </mat-grid-tile-header>
+            <mat-grid-tile-footer>
+                <button (click)="updatePhoto(indexOfelement)">Update Photo</button>
+                <button (click)="deletePhoto(indexOfelement)" style="margin-left:15%">Delete Photo</button>
+            </mat-grid-tile-footer>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

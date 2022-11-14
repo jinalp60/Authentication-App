@@ -18,8 +18,8 @@ export class SignUpComponent implements OnInit {
   email: string = '';
   bio: string = '';
   imagePath:string='';
-phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";  
- isValidFormSubmitted = false; 
+  phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";  
+  isValidFormSubmitted = false; 
 
 
 
@@ -49,7 +49,7 @@ phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";
   userSignUp() { 
     console.log(this.form.controls['name'].value);
     console.log("hiii")
-    this.http.post<{message: any}>('http://localhost:8000/registerUser', { name: this.form.controls['name'].value, phone: this.form.controls['phone'].value, email: this.form.controls['email'].value, password: this.form.controls['password'].value, bio: this.form.controls['bio'].value,imagePath:this.form.controls['imagePath'].value})
+    this.http.post<{message: any}>('http://localhost:8000/registerUser', { name: this.form.controls['name'].value, phone: this.form.controls['phone'].value, email: this.form.controls['email'].value, password: this.form.controls['password'].value, bio: this.form.controls['bio'].value,imagePath:this.form.controls['imagePath'].value, photos:[]})
       .subscribe(res => {
         console.log("received response from server", res);
         if(res && res.message) {
