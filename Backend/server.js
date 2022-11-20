@@ -312,8 +312,40 @@ app.post('/deletePhoto', (req, res, next) => {
     let flag = false;
 
     for (let user of users) {
-        if (req.body.name == user.name) {
+        if (req.body.name == user.name && req.body.password == user.password) {
             user.photos.splice(req.body.photoIndex, 1);
+            flag = true;
+            break;
+        }
+    }
+
+    if (flag) {
+        console.log(users);
+        const data = JSON.stringify(users);
+        fs.writeFile('./DB.json', data, 'utf8', (err) => {
+            if (err) {
+                console.log(`Error writing file: ${err}`);
+                res.status(200).json({ message: "error registering user" });
+            } else {
+                console.log(`File is written successfully!`);
+                res.status(200).json({ message: "Success" });
+            }
+        });
+    }
+    else {
+        console.log("User not found");
+        res.status(200).json({ message: "Failure" });
+    }
+
+})
+
+app.post('/updatePhoto', (req, res, next) => {
+    console.log("complete tasks user req:", req.body);
+    let flag = false;
+
+    for (let user of users) {
+        if (req.body.name == user.name) {
+            user.photos[req.body.photoIndex].imageUrl = req.body.imageUrl;
             flag = true;
             break;
         }

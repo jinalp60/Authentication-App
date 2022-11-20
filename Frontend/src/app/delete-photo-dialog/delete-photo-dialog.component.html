@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Delete Photo:</h2>
+
+<mat-dialog-content>
+
+    <form class="delete-photo-form" [formGroup]="deletePhotoForm">
+        <div style="margin-top:5%">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" value="" name="password" [(ngModel)]="password">
+            </mat-form-field>
+        </div>
+    </form>
+    
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="delete()">Delete</button>
+</mat-dialog-actions>
